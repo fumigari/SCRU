@@ -1,4 +1,4 @@
-package poo.com.negocios.beans;
+package com.poo.negocios.beans;
 
 import java.io.Serializable;
 
