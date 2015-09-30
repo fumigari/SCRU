@@ -19,7 +19,9 @@ public class Cartao implements Serializable{
 	}
 	
 	public void creditar(double valor){
-		
+		if(valor>0){
+			this.saldo += valor;
+		}
 	}
 
 	public double getSaldo(){
