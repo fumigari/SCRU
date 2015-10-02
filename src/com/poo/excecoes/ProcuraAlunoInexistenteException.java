@@ -1,5 +1,7 @@
 package com.poo.excecoes;
 
-public class ProcuraAlunoInexistenteException {
-
+public class ProcuraAlunoInexistenteException extends Exception{
+	public ProcuraAlunoInexistenteException(){
+		super("ALUNO PESQUISADO NÃO EXISTE.");
+	}
 }

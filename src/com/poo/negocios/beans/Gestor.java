@@ -1,10 +1,12 @@
 package com.poo.negocios.beans;
 
+import com.poo.excecoes.CpfInvalidoException;
+
 public class Gestor extends Pessoa{
 	private int permissao;
 	private Cartao cartaoGestor;
 
-	public Gestor(String nome, String cpf, int permissao, Cartao cartaoGestor){
+	public Gestor(String nome, String cpf, int permissao, Cartao cartaoGestor) throws CpfInvalidoException{
 		super(nome, cpf);
 		this.setPermissao(permissao);
 		this.setCartaoGestor(cartaoGestor);
