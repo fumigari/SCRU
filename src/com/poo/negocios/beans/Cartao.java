@@ -4,15 +4,14 @@ import java.io.Serializable;
 
 
 public class Cartao implements Serializable{
-	public int numero;
+	public String numero;
 	public String validade;
 	public String emissao;
 	public int via;
 	public double saldo;
 
-	public Cartao(int numero, String validade, String emissao, int via, double saldo){
+	public Cartao(String validade, String emissao, int via, double saldo){
 		this.setEmissao(emissao);
-		this.setNumero(numero);
 		this.setValidade(validade);
 		this.setVia(via);
 		this.setSaldo(saldo);
@@ -32,11 +31,11 @@ public class Cartao implements Serializable{
 		this.saldo = saldo;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
