@@ -1,5 +1,5 @@
 package com.poo.gui;
 
-public class Principal {
+public class TelaGestor {
 
 }
