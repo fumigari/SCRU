@@ -6,9 +6,9 @@ import com.poo.excecoes.CpfInvalidoException;
 import com.poo.excecoes.StatusInvalidoException;
 
 public class Aluno extends Pessoa implements Serializable{
-	public Cartao cartao;
-	public int status;//1- Aluno Ativo || 2 - Aluno Desativado
-	public boolean residente;
+	private Cartao cartao;
+	private int status;//1- Aluno Ativo || 2 - Aluno Desativado
+	private boolean residente;
 	
 	//implementar foto
 	public Aluno(String nome, String cpf, Cartao cartao, int status) throws CpfInvalidoException, StatusInvalidoException{
@@ -37,7 +37,7 @@ public class Aluno extends Pessoa implements Serializable{
 	public Cartao getCartao(){
 		return this.cartao;
 	}
-
+	
 	@Override
 	public String toString(){
 		return "Nome: "+this.getNome()+"CPF: "+this.getCpf();
