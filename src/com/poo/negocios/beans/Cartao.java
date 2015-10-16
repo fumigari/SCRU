@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 
 public class Cartao implements Serializable{
-	public String numero;
-	public String validade;
-	public String emissao;
-	public int via;
-	public double saldo;
+	private String numero;
+	private String validade;
+	private String emissao;
+	private int via;
+	private double saldo;
 
 	public Cartao(String validade, String emissao, int via, double saldo){
 		this.setEmissao(emissao);
@@ -65,6 +65,6 @@ public class Cartao implements Serializable{
 
 	@Override
 	public String toString(){
-		return "Numero do cart„o: "+this.getNumero()+"\nValidade: "+this.getValidade()+"\nEmissao: "+this.getEmissao()+"\nVia: "+this.getVia()+"\nSaldo: "+this.getSaldo();
+		return "Numero do cart√£o: "+this.getNumero()+"\nValidade: "+this.getValidade()+"\nEmissao: "+this.getEmissao()+"\nVia: "+this.getVia()+"\nSaldo: "+this.getSaldo();
 	}
 }
