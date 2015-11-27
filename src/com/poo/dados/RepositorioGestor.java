@@ -31,8 +31,8 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 	
 	private static RepositorioGestor abrirArquivo() throws IOException {
 
-		RepositorioAluno instanciaLocal = null;
-		File in = new File("ARQUIVOS\\CADASTRO ALUNOS\\cadastroalunos.bin");
+		RepositorioGestor instanciaLocal = null;
+		File in = new File("ARQUIVOS\\CADASTRO GESTORES\\cadastrogestores.bin");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
@@ -116,7 +116,7 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 		}
 	}
 	
-	public ArrayList<Aluno> listarGestores(){
+	public ArrayList<Gestor> listarGestores(){
 		return this.listaDeGestores;
 	}
 	
