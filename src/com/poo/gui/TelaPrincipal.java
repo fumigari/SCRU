@@ -65,8 +65,8 @@ public class TelaPrincipal extends JFrame {
 		
 		JLabel lblUfrpe = new JLabel("UFRPE");
 		lblUfrpe.setForeground(new Color(220, 20, 60));
-		lblUfrpe.setFont(new Font("Georgia", Font.PLAIN, 20));
-		lblUfrpe.setBounds(223, 103, 66, 16);
+		lblUfrpe.setFont(new Font("Georgia", Font.PLAIN, 21));
+		lblUfrpe.setBounds(223, 103, 71, 16);
 		contentPane.add(lblUfrpe);
 		
 		JLabel lblAtm = new JLabel("ATM® 2015");
