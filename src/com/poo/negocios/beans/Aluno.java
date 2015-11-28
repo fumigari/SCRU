@@ -1,18 +1,25 @@
 package com.poo.negocios.beans;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 import com.poo.excecoes.CpfInvalidoException;
 import com.poo.excecoes.StatusInvalidoException;
 
 public class Aluno extends Pessoa implements Serializable{
 	private int status;//1- Aluno Ativo || 2 - Aluno Desativado
+	private String curso;
+	DecimalFormat df = new DecimalFormat("0.0");
+	private float anoIngresso;
 	private boolean residente;
 	
+	
 	//implementar foto
-	public Aluno(String nome, String cpf, int status) throws CpfInvalidoException, StatusInvalidoException{
+	public Aluno(String nome, String cpf, int status, String curso, float anoIngresso) throws CpfInvalidoException, StatusInvalidoException{
 		super(nome, cpf);
 		this.setStatus(status);
+		this.setCurso(curso);
+		this.setAnoIngresso(anoIngresso);
 	}
 	
 	public int getStatus(){ 
@@ -32,6 +39,7 @@ public class Aluno extends Pessoa implements Serializable{
 		}
 	}
 	
+	
 	public boolean getResidente(){
 		return this.residente;
 	}
@@ -44,8 +52,31 @@ public class Aluno extends Pessoa implements Serializable{
 		}
 	}
 	
-	@Override
-	public String toString(){
-		return "Nome: " + this.getNome() + "\nCPF: " + this.getCpf() + "\nStatus: " + this.getStatus() + "\nResidente: " + this.getResidente();
+	public String getCurso(){
+		return this.curso;
 	}
+	
+	public void setCurso(String curso){
+		if(!curso.equals(null)){
+			this.curso = curso;
+		}
+	}
+	
+	public float getAnoIngresso(){
+		return this.anoIngresso;
+	}
+	
+	public void setAnoIngresso(float anoIngresso){
+		if(anoIngresso > 0){
+			this.anoIngresso = anoIngresso;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno\nNome: " + this.getNome()+ "\nCPF: " + this.getCpf() + 
+				"\nStatus: " + this.getStatus() + "\nCurso: " + this.getCurso() + "\nAno de Ingresso: " + this.getAnoIngresso() + "\nResidente: "
+				+ this.getResidente()+ "";
+	}
+
 }
