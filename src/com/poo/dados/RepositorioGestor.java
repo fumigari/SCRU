@@ -118,7 +118,7 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 	 * @throws IOException
 	 * @throws CadastroGestorExistenteException
 	 */
-	public void inserirGestor(Gestor gestores) throws IOException, CadastroGestorExistenteException{
+	public void inserirGestor(Gestor gestor) throws IOException, CadastroGestorExistenteException{
 		if(!this.existe(gestor)){
 			this.listaDeGestores.add(gestor);
 			salvarArquivo();
