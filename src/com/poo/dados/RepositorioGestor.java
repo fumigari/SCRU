@@ -14,12 +14,13 @@ import com.poo.excecoes.CadastroGestorExistenteException;
 import com.poo.negocios.beans.Gestor;
 
 public class RepositorioGestor implements IRepositorioGestor, Serializable{
-	private ArrayList<Gestor> listaDeGestores;
-	
+	private Gestor[] listaDeGestores;
+	private int proxima; //primeira posição vazia do vetor de gestor
 	private static RepositorioGestor instance;
 	
-	public RepositorioGestor(){
-		this.listaDeGestores = new ArrayList<Gestor>();
+	public RepositorioGestor(int tamanho){
+		this.listaDeGestores = new Gestor[tamanho];
+		this.proxima = 0;
 	}
 	
 	public static IRepositorioGestor getInstance() throws IOException {
@@ -32,7 +33,7 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 	private static RepositorioGestor abrirArquivo() throws IOException {
 
 		RepositorioGestor instanciaLocal = null;
-		File in = new File("ARQUIVOS\\CADASTRO GESTORES\\cadastrogestores.bin");
+		File in = new File("DADOS\\CADASTRO GESTORES\\cadastrogestores.bin");
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
@@ -42,7 +43,7 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 			instanciaLocal = (RepositorioGestor) o;
 		} catch (Exception e) {
 			
-			instanciaLocal = new RepositorioGestor();
+			instanciaLocal = new RepositorioGestor(50);
 			
 		} finally {
 
@@ -64,7 +65,7 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 			return;
 		}
 
-		File dir = new File("ARQUIVOS\\CADASTRO GESTORES");
+		File dir = new File("DADOS\\CADASTRO GESTORES");
 		dir.mkdirs();
 		File out = new File(dir,"cadastrogestores.bin");
         
@@ -103,8 +104,8 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 	 */
 	public boolean existe(Gestor gestor){
 		boolean achou = false;
-		for(int i = 0; i<this.listaDeGestores.size();i++){
-			if(this.listaDeGestores.get(i).getCpf().equals(gestor.getCpf())){
+		for(int i = 0; i <= (this.listaDeGestores.length-1);i++){
+			if(this.listaDeGestores[i].getCpf().equals(gestor.getCpf())){
 				achou = true;
 			}
 		}
@@ -120,14 +121,15 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 	 */
 	public void inserirGestor(Gestor gestor) throws IOException, CadastroGestorExistenteException{
 		if(!this.existe(gestor)){
-			this.listaDeGestores.add(gestor);
+			this.listaDeGestores[this.proxima] = gestor ;
+			this.proxima++;
 			salvarArquivo();
 		}else{
 			throw new CadastroGestorExistenteException();
 		}
 	}
 	
-	public ArrayList<Gestor	> listarGestores(){
+	public Gestor[] listarGestores(){
 		return this.listaDeGestores;
 	}
 	

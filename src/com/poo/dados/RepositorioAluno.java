@@ -7,19 +7,22 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import com.poo.excecoes.AlunoInexistenteException;
 import com.poo.excecoes.CadastroAlunoExistenteException;
+import com.poo.excecoes.ProcuraAlunoInexistenteException;
 import com.poo.negocios.beans.Aluno;
 
+
 public class RepositorioAluno implements IRepositorioAluno, Serializable{
-	private ArrayList<Aluno> listaDeAlunos;
+	private Aluno[] listaDeAlunos;
+	private int proxima;
 	
 	private static RepositorioAluno instance;
 	
-	public RepositorioAluno(){
-		this.listaDeAlunos = new ArrayList<Aluno>();
+	public RepositorioAluno(int tamanho){
+		this.listaDeAlunos = new Aluno[tamanho];
+		this.proxima = 0;
 	}
 	
 	public static IRepositorioAluno getInstance() throws IOException {
@@ -42,7 +45,7 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
 			instanciaLocal = (RepositorioAluno) o;
 		} catch (Exception e) {
 			
-			instanciaLocal = new RepositorioAluno();
+			instanciaLocal = new RepositorioAluno(50);
 			
 		} finally {
 
@@ -103,8 +106,8 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
 	 */
 	public boolean existe(Aluno aluno){
 		boolean achou = false;
-		for(int i = 0; i<this.listaDeAlunos.size();i++){
-			if(this.listaDeAlunos.get(i).getCpf().equals(aluno.getCpf())){
+		for(int i = 0; i <= (this.listaDeAlunos.length-1);i++){
+			if(this.listaDeAlunos[i].getCpf().equals(aluno.getCpf())){
 				achou = true;
 			}
 		}
@@ -120,17 +123,40 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
 	 */
 	public void inserirAluno(Aluno aluno) throws IOException, CadastroAlunoExistenteException{
 		if(!this.existe(aluno)){
-			this.listaDeAlunos.add(aluno);
+			this.listaDeAlunos[this.proxima] = aluno;
+			this.proxima++;
 			salvarArquivo();
 		}else{
 			throw new CadastroAlunoExistenteException();
 		}
 	}
 	
-	public ArrayList<Aluno> listarAlunos(){
+	public Aluno[] listarAlunos(){
 		return this.listaDeAlunos;
 	}
 	
+	private void duplicaArrayAluno() {
+
+		if (this.listaDeAlunos != null && this.listaDeAlunos.length > 0) {
+		    Aluno[] arrayDuplicado = new Aluno[this.listaDeAlunos.length * 2];
+			for (int i = 0; i < this.listaDeAlunos.length; i++) {
+				arrayDuplicado[i] = this.listaDeAlunos[i];
+
+			}
+			this.listaDeAlunos = arrayDuplicado;
+		}
+	}
+	
+	/*public Aluno procurar(int numeroDoSini)throws ProcuraAlunoInexistenteException {
+		int i = this.procurarIndice(numeroDoSini);
+		Aluno resultado = null;
+		if (i != this.proxima)
+			resultado = this.sini[i];
+		else
+			throw new ProcuraAlunoInexistenteException();
+
+		return resultado;
+	} */
 	
 
 	@Override
