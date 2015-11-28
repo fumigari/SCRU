@@ -18,7 +18,11 @@ public class Cartao implements Serializable{
 		this.setSaldo(saldo);
 		this.setAluno(aluno);
 	}
-	
+	/**
+	 * Credita(soma um valor) a uma conta
+	 * 
+	 * @param valor define um valor que será somado ao saldo do cliente
+	 */
 	public void creditar(double valor){
 		if(valor>0){
 			this.saldo += valor;
@@ -32,7 +36,7 @@ public class Cartao implements Serializable{
 	public void setSaldo(double saldo){
 		this.saldo = saldo;
 	}
-
+ 
 	public String getNumero() {
 		return numero;
 	}

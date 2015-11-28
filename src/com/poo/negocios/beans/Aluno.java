@@ -18,7 +18,12 @@ public class Aluno extends Pessoa implements Serializable{
 	public int getStatus(){ 
 		return this.status;
 	}
-	
+	/**
+	 * Verifica o estado do estudante
+	 * 
+	 * @param status define se o estudante é regular(1) ou desativado (0)	
+	 * 
+	 */
 	public void setStatus(int status) throws StatusInvalidoException{
 		if(status == 0 || status == 1){
 			this.status = status;
@@ -30,7 +35,7 @@ public class Aluno extends Pessoa implements Serializable{
 	public boolean getResidente(){
 		return this.residente;
 	}
-	
+	 
 	public void setResidente(boolean residente){
 		if(residente == true){
 			

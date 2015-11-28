@@ -95,7 +95,12 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 		}
 	}
 	
-	//Existe baseado no CPF.
+	/**
+	 * Faz uma busca para conferir se o Gestor é cadastrado ou não cadastrado
+	 * 
+	 * @param gestor  
+	 * @return verdadeiro se já existe ou falso se é inexistente
+	 */
 	public boolean existe(Gestor gestor){
 		boolean achou = false;
 		for(int i = 0; i<this.listaDeGestores.size();i++){
@@ -106,7 +111,13 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 		return achou;
 	}
 	
-	
+	/**
+	 * Adiciona um novo gestor a lista de gestores
+	 * 
+	 * @param gestores
+	 * @throws IOException
+	 * @throws CadastroGestorExistenteException
+	 */
 	public void inserirGestor(Gestor gestores) throws IOException, CadastroGestorExistenteException{
 		if(!this.existe(gestor)){
 			this.listaDeGestores.add(gestor);
@@ -116,7 +127,7 @@ public class RepositorioGestor implements IRepositorioGestor, Serializable{
 		}
 	}
 	
-	public ArrayList<Gestor> listarGestores(){
+	public ArrayList<Gestor	> listarGestores(){
 		return this.listaDeGestores;
 	}
 	

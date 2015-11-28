@@ -95,7 +95,12 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
 		}
 	}
 	
-	//Existe baseado no CPF.
+	/**
+	 * Verifica se um aluno é realmente da faculdade ou não
+	 * 
+	 * @param aluno 
+	 * @return Verdadeiro se for estudante e falso se não for estudante
+	 */
 	public boolean existe(Aluno aluno){
 		boolean achou = false;
 		for(int i = 0; i<this.listaDeAlunos.size();i++){
@@ -106,7 +111,13 @@ public class RepositorioAluno implements IRepositorioAluno, Serializable{
 		return achou;
 	}
 	
-	
+	/**
+	 * Adiciona um novo aluno a lista de alunos
+	 * 
+	 * @param aluno
+	 * @throws IOException
+	 * @throws CadastroAlunoExistenteException
+	 */
 	public void inserirAluno(Aluno aluno) throws IOException, CadastroAlunoExistenteException{
 		if(!this.existe(aluno)){
 			this.listaDeAlunos.add(aluno);
